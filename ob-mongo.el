@@ -72,9 +72,9 @@
 ;;;###autoload
 (defun org-babel-execute:mongo (body params)
   "org-babel mongo hook."
-  (unless (assoc :db params)
-    (user-error "The required parameter :db is missing."))
-  (org-babel-eval (ob-mongo--make-command params) body))
+  ;; (unless (assoc :db params)
+  ;;   (user-error "The required parameter :db is missing."))
+  (org-babel-eval (concat (ob-mongo--make-command params) " | grep -v NETWORK") body))
 
 ;;;###autoload
 (eval-after-load "org"
