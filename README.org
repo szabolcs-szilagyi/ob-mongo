@@ -13,12 +13,35 @@ db.employees.count({country: "gb"});
 
 ** Installation
 
-If you're hooked up to [[http://melpa.milkbox.net/][MELPA]]:
+*** MELPA
+
+For the original version and if you're hooked up to [[http://melpa.milkbox.net/][MELPA]]:
 
 #+BEGIN_EXAMPLE
 M-x package-refresh-contents
 M-x package-install RET ob-mongo
 #+END_EXAMPLE
+
+*** QUELPA
+
+With quelpa you get the benefit of being able to install it directly from
+GitHub. Downside that wit the current solution described here will *always*
+download the package at startup.
+
+For this forked version in [[http://spacemacs.org/][spacemacs]]:
+1. place =quelpa-use-package= into the =dotspacemacs-additional-packages= list
+2. place the following into the =dotspacemacs/user-config= section:
+#+begin_src lisp
+(require 'quelpa-use-package)
+  (use-package ob-mongo
+    :quelpa (ob-mongo :fetcher github :repo "szabolcs-szilagyi/ob-mongo"))
+#+end_src
+
+The above only worked for me, when I've had =dotspacemacs-install-packages= set to
+='used-only=, other way it would work on first run, but would stop after
+restarting spacemacs.
+
+*** Other way
 
 Alternatively just grab the single =ob-mongo.el= file and install that in your preferred way.
 
